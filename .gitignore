@@ -1,0 +1,23 @@
+# Datasets (large files)
+datasets/
+data/
+
+# IDE and tool configs
+.claude/
+.cursor/
+.kiro/
+.code-review-graph/
+*.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db

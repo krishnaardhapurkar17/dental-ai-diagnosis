@@ -1,0 +1,152 @@
+Dental AI Dataset Report
+Overview
+The datasets/ folder contains 3 top-level dataset groups covering two imaging modalities: normal oral photographs and dental X-rays (radiographs). Total images across all datasets: ~5,000+.
+
+1. normal photographs/
+1a. Calculus/
+Type: Normal oral photographs (JPG)
+
+Task: Image classification — Calculus (tartar) detection
+
+Images: 1,296 .jpg files, numbered (1).jpg to (1296).jpg
+
+Structure: Flat folder, no train/val/test split, no labels
+
+Notes: Single-class image collection. No annotation files present. Intended for classification use.
+
+1b. Cavity Dataset/ (Roboflow — CAV-TEE Research Team)
+Type: Normal oral photographs (JPG/PNG)
+
+Task: Object detection (YOLO format)
+
+License: CC BY 4.0
+
+Classes: 2 — healthy_teeth, unhealthy_teeth
+
+Annotation format: YOLO .txt label files (one per image)
+
+Split breakdown:
+
+Split	Images	Labels
+train	287	287
+valid	93	—
+test	38	—
+Total	418	—
+Config file: data.yaml (nc=2, names=['healthy_teeth', 'unhealthy_teeth'])
+
+Notes: Standard Roboflow export. Train set has confirmed paired label files.
+
+2. teeth-segmentation-on-dental-x-ray-images-DatasetNinja/
+Type: Dental X-ray images (JPG)
+
+Task: Semantic segmentation (per-tooth instance masks)
+
+Source: DatasetNinja
+
+Images: 598 .jpg files (ds/img/1.jpg → 598.jpg)
+
+Annotations: 598 .json files in ds/ann/ (one per image, bitmap mask format)
+
+Classes: 32 individual tooth classes labeled by FDI tooth numbering system (teeth 1–32), each with a unique color and bitmap shape annotation
+
+Annotation format: Supervisely JSON with bitmap masks per tooth
+
+Structure:
+
+ds/
+  img/   ← 598 X-ray images
+  ann/   ← 598 JSON annotation files
+meta.json ← 32 class definitions
+
+Copy
+Notes: No train/val/test split provided. Each tooth is individually segmented. This is the most annotation-rich dataset in the collection.
+
+3. xrays/
+3a. Dental caries in bitewing radiographs/
+Type: Bitewing dental X-rays (PNG)
+
+Task: Object detection — carious lesion detection
+
+Source: Czech Technical University / Charles University Prague (research dataset "D0")
+
+Images: 100 .png files, all rescaled to 1068×847 pixels
+
+Annotations: test_annotations_anonymized.json — COCO JSON format
+
+Annotators: 8 human annotators (E0–E4 = experts with >15 years experience; N1–N3 = novices with <5 years)
+
+Annotation type: Tight bounding boxes around carious lesions
+
+Structure: Flat images/ folder + single JSON annotation file
+
+Notes: This is a test-only dataset (no training split). Published alongside a journal article in Springer's Clinical Oral Investigations. Free for research use.
+
+3b. Dental OPG XRAY Dataset/
+This dataset has two sub-tasks:
+
+3b-i. Dental OPG (Classification)/
+Type: OPG (Orthopantomogram) X-rays (JPG)
+
+Task: Multi-class image classification
+
+Classes & counts:
+
+Class	Count
+BDC-BDR (Bone Defect / Root)	52
+Caries	119
+Fractured Teeth	13
+Healthy Teeth	223
+Impacted Teeth	87
+Infection	23
+Total	517
+Structure: One folder per class, flat image files
+
+Notes: Significant class imbalance — Healthy Teeth (223) vs Fractured Teeth (13). No train/val/test split.
+
+3b-ii. Dental OPG (Object Detection)/
+Type: OPG X-rays (JPG)
+
+Task: Object detection (YOLO format)
+
+Classes: 6 — BDC-BDR, Caries, Fractured Teeth, Healthy Teeth, Impacted teeth, Infection
+
+Original Dataset:
+
+Component	Count
+Images (.jpg)	231
+Label files (.txt)	231
+Augmented Dataset (train/val/test split):
+
+Split	Images
+train	558
+valid	23
+test	23
+Total	604
+Config: data.yaml (nc=6)
+
+Notes: The augmented dataset is ~2.6× the original, indicating augmentation was applied to the training set. Val and test sets are small (23 each).
+
+Grand Summary Table
+Dataset	Modality	Task	Images	Annotations	Split
+Calculus	Photograph	Classification	1,296	None	No
+Cavity Dataset	Photograph	Object Detection (YOLO)	418	YOLO .txt	Yes (287/93/38)
+Teeth Segmentation (DatasetNinja)	X-ray	Semantic Segmentation	598	JSON bitmap masks	No
+Dental Caries Bitewing	X-ray	Object Detection (COCO)	100	COCO JSON	No (test only)
+OPG Classification	X-ray (OPG)	Classification	517	Folder labels	No
+OPG Object Detection (Original)	X-ray (OPG)	Object Detection (YOLO)	231	YOLO .txt	No
+OPG Object Detection (Augmented)	X-ray (OPG)	Object Detection (YOLO)	604	YOLO .txt	Yes (558/23/23)
+TOTAL	~3,764
+Key Observations
+Two imaging modalities: Normal oral photographs (Calculus, Cavity) and dental X-rays (OPG, bitewing, panoramic).
+
+Three task types: Classification, object detection (YOLO & COCO), and semantic segmentation.
+
+Class imbalance is a concern in the OPG Classification dataset — Fractured Teeth has only 13 samples vs 223 Healthy Teeth.
+
+Only 2 datasets have proper train/val/test splits (Cavity Dataset and OPG Augmented). The rest need splitting before training.
+
+The Teeth Segmentation dataset is the most richly annotated — 598 images with per-tooth bitmap masks for all 32 teeth using FDI numbering.
+
+The Bitewing Caries dataset is test-only — it cannot be used for training, only evaluation.
+
+The Calculus folder has no annotations — only raw images, making it usable only for unsupervised or self-supervised tasks unless labels are added.

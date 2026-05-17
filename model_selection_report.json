@@ -1,0 +1,101 @@
+{
+  "model1_classification": {
+    "best_model": "MobileNetV3-Large",
+    "metrics": {
+      "accuracy": 39.24050632911393,
+      "f1_score": 0.2917721518987342
+    },
+    "all_models": [
+      {
+        "model": "MobileNetV3-Large",
+        "accuracy": 39.24050632911393,
+        "precision": 0.2325116588940705,
+        "recall": 0.3924050632911392,
+        "f1_score": 0.2917721518987342
+      },
+      {
+        "model": "VGG16",
+        "accuracy": 43.03797468354431,
+        "precision": 0.4298928919182083,
+        "recall": 0.430379746835443,
+        "f1_score": 0.2724858674225763
+      }
+    ]
+  },
+  "model2_detection": {
+    "best_model": "YOLOv8l-OPG",
+    "metrics": {
+      "mAP50": 0.8365557876054018,
+      "mAP50-95": 0.5722094900731337
+    },
+    "all_models": [
+      {
+        "model": "YOLOv8n-Cavity",
+        "mAP50": 0.7837860769091017,
+        "mAP50-95": 0.4149691528330682,
+        "precision": 0.755102546954542,
+        "recall": 0.7376311844077961
+      },
+      {
+        "model": "YOLOv8l-Cavity",
+        "mAP50": 0.7608066537430662,
+        "mAP50-95": 0.4092210085164144,
+        "precision": 0.6919851209854084,
+        "recall": 0.739453189398278
+      },
+      {
+        "model": "YOLOv8n-OPG",
+        "mAP50": 0.5975454416331251,
+        "mAP50-95": 0.3730441221751622,
+        "precision": 0.5990395608005988,
+        "recall": 0.5993149332701572
+      },
+      {
+        "model": "YOLOv8l-OPG",
+        "mAP50": 0.8365557876054018,
+        "mAP50-95": 0.5722094900731337,
+        "precision": 0.8658512145963786,
+        "recall": 0.7806513186236516
+      }
+    ]
+  },
+  "model3_segmentation": {
+    "best_model": "DeepLabV3+ (ResNet50)",
+    "metrics": {
+      "mean_iou": 0.5594602564970652
+    },
+    "all_models": [
+      {
+        "model": "U-Net + ResNet34",
+        "mean_iou": 0.5519096076488494
+      },
+      {
+        "model": "DeepLabV3+ (ResNet50)",
+        "mean_iou": 0.5594602564970652
+      }
+    ]
+  },
+  "model4_clinical": {
+    "best_model": "EfficientNet-B0",
+    "metrics": {
+      "accuracy": 99.61414790996784,
+      "f1_score": 0.9961372676065804
+    },
+    "all_models": [
+      {
+        "model": "EfficientNet-B0",
+        "accuracy": 99.61414790996784,
+        "precision": 0.996149492349326,
+        "recall": 0.9961414790996784,
+        "f1_score": 0.9961372676065804
+      },
+      {
+        "model": "DenseNet121",
+        "accuracy": 99.54983922829582,
+        "precision": 0.9955152908413264,
+        "recall": 0.9954983922829582,
+        "f1_score": 0.9954992792760264
+      }
+    ]
+  }
+}

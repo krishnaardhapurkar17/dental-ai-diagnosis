@@ -1,0 +1,8 @@
+Dataset,Modality,Task,Total Images,Annotation Format,Has Train/Val/Test Split,Classes/Categories
+Calculus,Normal Oral Photograph,Image Classification (Calculus Detection),1296,None,No,Single-class (Calculus)
+Cavity Dataset,Normal Oral Photograph,Object Detection (YOLO),0,YOLO .txt,N/A,2
+Teeth Segmentation,Dental X-ray,Semantic Segmentation (Per-tooth Instance Masks),598,Supervisely JSON with bitmap masks,No,32
+Bitewing Caries,Bitewing Dental X-ray,Object Detection (Carious Lesion Detection),100,COCO JSON,Test-only (no training split),N/A
+OPG Classification,OPG (Orthopantomogram) X-ray,Multi-class Image Classification,517,N/A,No,6
+OPG Detection (Original),OPG X-ray,Object Detection (YOLO),231,YOLO .txt,No,6
+OPG Detection (Augmented),OPG X-ray,Object Detection (YOLO),0,YOLO .txt,Yes,6

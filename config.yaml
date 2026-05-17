@@ -1,0 +1,41 @@
+project:
+  base_dir: "d:/college/EDAI/final project"
+  random_seed: 42
+
+model1_classification:
+  data_source: "datasets/xrays/Dental OPG XRAY Dataset/Dental OPG (Classification)"
+  data_dir: "model1_classification/data"
+  model_save_path: "model1_classification/checkpoints/best_model.pth"
+  classes: ["BDC-BDR", "Caries", "Healthy Teeth", "Impacted teeth", "Other Pathology"]
+  num_classes: 5
+  input_size: [300, 300]
+  batch_size: 16
+  phase1_epochs: 15
+  phase2_epochs: 25
+  phase1_lr: 0.001
+  phase2_lr: 0.00001
+  dropout: 0.4
+
+model2_detection:
+  cavity_data_yaml: "datasets/normal photographs/Cavity Dataset/data.yaml"
+  opg_data_yaml: "datasets/xrays/Dental OPG XRAY Dataset/Dental OPG (Object Detection)/Augmented Dataset/data.yaml"
+  model_save_dir: "model2_detection/checkpoints"
+  input_size: 640
+  epochs: 50
+  batch_size: 8
+
+model3_segmentation:
+  data_source: "datasets/teeth-segmentation-on-dental-x-ray-images-DatasetNinja/ds"
+  data_dir: "model3_segmentation/data"
+  model_save_path: "model3_segmentation/checkpoints/best_model.pth"
+  meta_json: "datasets/teeth-segmentation-on-dental-x-ray-images-DatasetNinja/meta.json"
+  num_classes: 1
+  input_size: [512, 512]
+  batch_size: 4
+  epochs: 60
+  lr: 0.001
+
+evaluation:
+  bitewing_images: "datasets/xrays/Dental caries in bitewing radiographs/images"
+  bitewing_annotations: "datasets/xrays/Dental caries in bitewing radiographs/test_annotations_anonymized.json"
+  outputs_dir: "outputs"

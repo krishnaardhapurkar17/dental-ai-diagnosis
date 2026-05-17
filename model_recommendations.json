@@ -1,0 +1,6 @@
+{
+  "classification": "MobileNetV3-Large",
+  "detection": "YOLOv8l-OPG",
+  "segmentation": "U-Net + ResNet34",
+  "clinical": "EfficientNet-B0"
+}
